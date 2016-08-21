@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <pre>&gt;<span input></span><span class="blink">&#9610;</span></pre>
+  <style>
+    body {
+      font-family: monospace;
+      font-size: 24px;
+      background: #000;
+      color: green;
+    }
+    .blink {
+      animation-name: blink;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+  <script>
+    var value = '';
+    function updateValue(input) {
+      value = value + input;
+      document.querySelector('[input]').textContent = value;
+    }
+
+    function addNewLine() {
+      updateValue("\n>");
+    }
+
+    document.addEventListener('keydown', function (event) {
+      console.log(event.which);
+      if (event.which === 13) {
+        addNewLine();
+      }
+      if ((event.which < 65 || event.which > 90) && event.which !== 32) {
+        return;
+      }
+      updateValue(String.fromCharCode(event.which));
+    });
+  </script>
+</body>
+</html>
